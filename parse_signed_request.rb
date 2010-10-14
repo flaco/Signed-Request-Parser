@@ -1,4 +1,4 @@
-# Parses Facebooks Signed Request Parameter return
+# Parses Facebooks Signed Request Parameter and returns JSON
 # Some borrowing from http://github.com/appoxy/mini_fb/blob/master/lib/mini_fb.rb && http://sunilarora.org/parsing-signedrequest-parameter-in-python-bas
 
 require "openssl"
@@ -17,7 +17,6 @@ def verify_signed_request(secret, sign, payload)
   expected_sig = OpenSSL::HMAC.digest('SHA256', secret, payload.tr("-_", "+/"))
   return sig == expected_sig
 end
-
 
 def parse_signed_request
   secret = "APP_SECRET"
